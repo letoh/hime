@@ -155,7 +155,7 @@ inline static int get_phidx(int i)
 }
 
 
-inline int phokey_t_seq16(phokey_t *a, phokey_t *b, int len)
+static inline int phokey_t_seq16(phokey_t *a, phokey_t *b, int len)
 {
   int i;
 
@@ -169,7 +169,7 @@ inline int phokey_t_seq16(phokey_t *a, phokey_t *b, int len)
 }
 
 
-inline int phokey_t_seq32(u_int *a, u_int *b, int len)
+static inline int phokey_t_seq32(u_int *a, u_int *b, int len)
 {
   int i;
 
@@ -183,7 +183,7 @@ inline int phokey_t_seq32(u_int *a, u_int *b, int len)
 }
 
 
-inline int phokey_t_seq64(u_int64_t *a, u_int64_t *b, int len)
+static inline int phokey_t_seq64(u_int64_t *a, u_int64_t *b, int len)
 {
   int i;
 
@@ -498,7 +498,7 @@ gboolean tsin_seek(void *pho, int plen, int *r_sti, int *r_edi, char *tone_mask)
 #endif
 
     if ((!tone_mask && !v && len>=plen) ||
-        (tone_mask && v>0 || !v && len >= plen))
+        ((tone_mask && v>0) || (!v && len >= plen)))
       continue;
     break;
   }
@@ -579,7 +579,7 @@ gboolean tsin_seek(void *pho, int plen, int *r_sti, int *r_edi, char *tone_mask)
 #endif
 
     if ((!tone_mask && !v && len >= plen)
-      || (tone_mask && v<0 || !v && len >= plen))
+      || ((tone_mask && v<0) || (!v && len >= plen)))
       continue;
     break;
   }

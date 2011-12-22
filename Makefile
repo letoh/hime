@@ -4,7 +4,7 @@ ECHO = /bin/echo
 
 VERSION_FILE = VERSION.hime
 
-DIR    = src data scripts icons man menu
+DIR    = src data filter scripts icons man menu
 
 ifeq ($(USE_I18N),Y)
 DIR   += po
@@ -23,10 +23,10 @@ install:
 	@if [ $(prefix) = /usr/local ]; then \
 	   install -m 644 icons/hime.png /usr/share/pixmaps; \
 	   install -d $(DOC_DIR); \
-	   install -m 644 README.html Changelog.html $(DOC_DIR); \
+	   install -m 644 README.html ChangeLog $(DOC_DIR); \
 	else \
 	   install -d $(DOC_DIR_i); \
-	   install -m 644 README.html Changelog.html $(DOC_DIR_i); \
+	   install -m 644 README.html ChangeLog $(DOC_DIR_i); \
 	fi
 
 clean:

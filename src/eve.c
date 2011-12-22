@@ -668,7 +668,7 @@ void win_tsin_disp_half_full();
 void win_gtab_disp_half_full();
 void update_tray_icon(), load_tray_icon(), load_tray_icon_win32();
 static int current_hime_win32_icon = -1;
-void restart_hime0();
+void restart_hime();
 extern void destroy_tray_win32();
 extern void destroy_tray_icon();
 
@@ -773,6 +773,10 @@ void toggle_im_enabled()
 #if USE_TSIN
         flush_tsin_buffer();
 #endif
+      }
+      else if (current_method_type () == method_type_MODULE)
+      {
+          module_cb ()->module_flush_input ();
       }
       else {
         output_gbuf();
