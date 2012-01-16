@@ -927,6 +927,7 @@ gboolean init_in_method(int in_no)
       init_tab_pp(init_im);
       break;
     case method_type_SYMBOL_TABLE:
+      current_CS->in_method = in_no;
       toggle_symbol_table();
       break;
     case method_type_MODULE:
