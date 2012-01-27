@@ -983,7 +983,6 @@ gboolean feedkey_gtab(KeySym key, int kbstate)
   gboolean shift_m = (kbstate & ShiftMask) > 0;
 //  gboolean ctrl_m = (kbstate & ControlMask) > 0;
   gboolean capslock_on = (kbstate & LockMask);
-  gboolean is_dayi = !strncmp(cur_inmd->filename, "dayi", 4);
 
   bzero(seltab_phrase, sizeof(seltab_phrase));
 
@@ -991,6 +990,8 @@ gboolean feedkey_gtab(KeySym key, int kbstate)
 
   if (!cur_inmd)
     return 0;
+
+  gboolean is_dayi = !strncmp(cur_inmd->filename, "dayi", 4);
 
   if ((tsin_chinese_english_toggle_key == TSIN_CHINESE_ENGLISH_TOGGLE_KEY_CapsLock) &&
       (key == XK_Caps_Lock)){
