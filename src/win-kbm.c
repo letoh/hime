@@ -29,7 +29,7 @@ static GdkColor red;
 #else
 static GdkRGBA red;
 #endif
-int win_kbm_on;
+gboolean win_kbm_on = FALSE;
 extern gboolean test_mode;
 
 enum {
@@ -48,6 +48,10 @@ typedef struct {
   char flag;
   GtkWidget *lab, *but, *laben;
 } KEY;
+
+#if TRAY_ENABLED
+extern void update_item_active_all();
+#endif
 
 /* include win-kbm.h here so we do not have to translate those N_("stuff") */
 #include "win-kbm.h"
@@ -262,6 +266,8 @@ static void create_win_kbm()
 extern GdkWindow *tray_da_win;
 extern GtkStatusIcon *icon_main;
 
+extern gboolean is_exist_tray_double();
+
 static void move_win_kbm()
 {
   int width, height;
@@ -297,7 +303,7 @@ static void move_win_kbm()
       ox = 0;
   } else
 #endif
-  if (icon_main && gtk_status_icon_get_geometry(icon_main, NULL, &r,  &ori)) {
+  if (is_exist_tray_double() && gtk_status_icon_get_geometry(icon_main, NULL, &r,  &ori)) {
 //    dbg("rect %d:%d %d:%d\n", r.x, r.y, r.width, r.height);
     ox = r.x;
     if (ox + width > dpy_xl)
@@ -324,7 +330,10 @@ void show_win_kbm()
   }
 
   gtk_widget_show_all(gwin_kbm);
-  win_kbm_on = 1;
+  win_kbm_on = TRUE;
+#if TRAY_ENABLED
+  update_item_active_all();
+#endif
 #if WIN32
   gtk_window_present(GTK_WINDOW(gwin_kbm));
 #endif
@@ -545,7 +554,10 @@ void hide_win_kbm()
 #endif
 
   clear_kbm_timeout_handle();
-  win_kbm_on = 0;
+  win_kbm_on = FALSE;
+#if TRAY_ENABLED
+  update_item_active_all();
+#endif
   gtk_widget_hide(gwin_kbm);
 }
 
