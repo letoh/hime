@@ -264,7 +264,6 @@ void open_xim()
           NULL);
 
   if (xims == NULL) {
-          setenv("NO_GTK_INIT", "", TRUE);
           p_err("IMOpenIM '%s' failed. Maybe another XIM server is running.\n",
           xim_name);
   }
@@ -591,7 +590,6 @@ int main(int argc, char **argv)
   }
 #endif
 
-//putenv("GDK_NATIVE_WINDOWS=1");
 #if WIN32
   typedef BOOL (WINAPI* pImmDisableIME)(DWORD);
   pImmDisableIME pd;
@@ -638,7 +636,6 @@ int main(int argc, char **argv)
 #endif
 
   if (argc == 2 && (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version") || !strcmp(argv[1], "-h")) ) {
-    setenv("NO_GTK_INIT", "", TRUE);
 #if GIT_HAVE
     p_err(" version %s (git %s)\n", HIME_VERSION, GIT_HASH);
 #else
