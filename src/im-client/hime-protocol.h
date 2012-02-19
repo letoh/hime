@@ -96,7 +96,7 @@ typedef struct {
 } Server_IP_port;
 
 typedef struct {
-  char sock_path[80];
+  char sock_path[UNIX_PATH_MAX];
 } Server_sock_path;
 #if UNIX
 void __hime_enc_mem(u_char *p, int n, HIME_PASSWD *passwd, u_int *seed);
