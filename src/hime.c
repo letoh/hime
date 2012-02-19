@@ -17,7 +17,6 @@
 
 #include "hime.h"
 #include "config.h"
-#include "hime-version.h"
 #include "gtab.h"
 #if UNIX
 #include <signal.h>
