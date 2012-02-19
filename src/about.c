@@ -77,7 +77,11 @@ void create_about_window()
     image = gtk_image_new_from_file (hime_png);
 #endif
 
-    label_version = gtk_label_new ("version " HIME_VERSION "  " __DATE__);
+#if GIT_HAVE
+    label_version = gtk_label_new ("version " HIME_VERSION "\n(git " GIT_HASH ")");
+#else
+    label_version = gtk_label_new ("version " HIME_VERSION);
+#endif
 
     gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 3);
     gtk_box_pack_start (GTK_BOX (hbox), label_version, FALSE, FALSE, 3);
