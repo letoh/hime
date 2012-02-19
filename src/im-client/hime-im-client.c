@@ -261,8 +261,7 @@ static HIME_client_handle *hime_im_client_reopen(HIME_client_handle *hime_ch, Di
   struct sockaddr_un serv_addr;
   bzero((char *) &serv_addr,sizeof(serv_addr));
   serv_addr.sun_family = AF_UNIX;
-  // the max size of saddr.sun_path in Linux is 108!
-  char sock_path[108];
+  char sock_path[UNIX_PATH_MAX];
 
   if (srv_sock_path.sock_path[0]) {
     strcpy(sock_path, srv_sock_path.sock_path);
