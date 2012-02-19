@@ -316,6 +316,7 @@ void change_pho_font_size();
 void change_win_sym_font_size();
 void change_win_gtab_style();
 extern gboolean win_kbm_on;
+extern void change_module_font_size();
 
 static void change_font_size()
 {
@@ -329,6 +330,7 @@ static void change_font_size()
   update_win_kbm_inited();
   change_win1_font();
 //  change_win_pho_style();
+  change_module_font_size();
 }
 
 #if UNIX
